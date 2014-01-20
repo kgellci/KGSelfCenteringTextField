@@ -67,11 +67,11 @@
 
 - (void) centerTextfieldWithScrollView:(UIScrollView *) scrollView {
     // Get the scrollview size after we remove the keyboard and any toolbar sizes
-    int visibleScreenHeight = scrollView.frame.size.height;
+    int visibleScreenHeight = scrollView.frame.size.height - scrollView.contentInset.top;
     visibleScreenHeight -= keyboardSize.height;
     
     // get the needed offset to center the textfield
-    CGPoint translatedTextViewPosition = [self convertPoint:self.frame.origin toView:scrollView];
+    CGPoint translatedTextViewPosition = [self.superview convertPoint:self.frame.origin toView:scrollView];
     int offset = (translatedTextViewPosition.y + self.frame.size.height/2) -visibleScreenHeight;
     
     // make sure the content does not scroll too high
