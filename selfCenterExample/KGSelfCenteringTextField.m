@@ -72,7 +72,8 @@
     
     // get the needed offset to center the textfield
     CGPoint translatedTextViewPosition = [self.superview convertPoint:self.frame.origin toView:scrollView];
-    int offset = (translatedTextViewPosition.y + self.frame.size.height/2) -visibleScreenHeight;
+    int offset = (translatedTextViewPosition.y + self.frame.size.height/2) - scrollView.contentInset.top;
+    offset = offset - (visibleScreenHeight/2);
     
     // make sure the content does not scroll too high
     if (offset > scrollView.contentSize.height - scrollView.frame.size.height) {
