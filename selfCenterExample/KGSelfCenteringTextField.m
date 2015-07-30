@@ -96,7 +96,9 @@
 - (void)keyboardWillShow:(NSNotification *)notification
 {
     // Get the size of the keyboard.
-    keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    CGRect keyboardScreenBeginFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+    keyboardScreenBeginFrame = [self convertRect:keyboardScreenBeginFrame fromView:self.window];
+    keyboardSize = keyboardScreenBeginFrame.size;
 }
 
 @end
